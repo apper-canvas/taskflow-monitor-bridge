@@ -23,10 +23,10 @@ const CategoryBadge = ({
     >
       {showDot && (
         <span 
-          className={cn("w-2 h-2 rounded-full", `category-${category.color}`)}
+className={cn("w-2 h-2 rounded-full", `category-${category.color_c}`)}
         />
       )}
-      {category.name}
+{category.Name}
     </Badge>
   )
 }

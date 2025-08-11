@@ -34,60 +34,62 @@ const TasksPage = () => {
     let filtered = [...tasks]
 
     // Route-based filtering
-    if (params.categoryId) {
-      filtered = filtered.filter(task => task.categoryId === parseInt(params.categoryId))
+if (params.categoryId) {
+      filtered = filtered.filter(task => 
+        (task.category_id_c?.Id || task.category_id_c) === parseInt(params.categoryId)
+      )
     } else if (params.priority) {
-      filtered = filtered.filter(task => task.priority === params.priority)
+      filtered = filtered.filter(task => task.priority_c === params.priority)
     } else if (params[0] === "overdue") {
-      filtered = filtered.filter(task => !task.completed && isOverdue(task.dueDate))
+      filtered = filtered.filter(task => !task.completed_c && isOverdue(task.due_date_c))
     } else if (params[0] === "today") {
-      filtered = filtered.filter(task => !task.completed && isDueToday(task.dueDate))
+      filtered = filtered.filter(task => !task.completed_c && isDueToday(task.due_date_c))
     } else if (params[0] === "upcoming") {
       filtered = filtered.filter(task => 
-        !task.completed && 
-        task.dueDate && 
-        !isOverdue(task.dueDate) && 
-        !isDueToday(task.dueDate)
+        !task.completed_c && 
+        task.due_date_c && 
+        !isOverdue(task.due_date_c) && 
+        !isDueToday(task.due_date_c)
       )
     } else if (params[0] === "completed") {
-      filtered = filtered.filter(task => task.completed)
+      filtered = filtered.filter(task => task.completed_c)
     }
 
     // Search filtering
-    if (searchQuery) {
+if (searchQuery) {
       const query = searchQuery.toLowerCase()
       filtered = filtered.filter(task =>
-        task.title.toLowerCase().includes(query) ||
-        (task.description && task.description.toLowerCase().includes(query))
+        task.title_c?.toLowerCase().includes(query) ||
+        (task.description_c && task.description_c.toLowerCase().includes(query))
       )
     }
 
     // Priority filtering
-    if (selectedPriority) {
-      filtered = filtered.filter(task => task.priority === selectedPriority)
+if (selectedPriority) {
+      filtered = filtered.filter(task => task.priority_c === selectedPriority)
     }
 
-    // Completed filtering
+// Completed filtering
     if (!showCompleted) {
       filtered = filtered.filter(task => !task.completed)
     }
 
     // Sorting
-    filtered.sort((a, b) => {
+filtered.sort((a, b) => {
       switch (sortBy) {
         case "priority":
           const priorityOrder = { high: 3, medium: 2, low: 1 }
-          return (priorityOrder[b.priority] || 1) - (priorityOrder[a.priority] || 1)
+          return (priorityOrder[b.priority_c] || 1) - (priorityOrder[a.priority_c] || 1)
         case "dueDate":
-          if (!a.dueDate && !b.dueDate) return 0
-          if (!a.dueDate) return 1
-          if (!b.dueDate) return -1
-          return new Date(a.dueDate) - new Date(b.dueDate)
+          if (!a.due_date_c && !b.due_date_c) return 0
+          if (!a.due_date_c) return 1
+          if (!b.due_date_c) return -1
+          return new Date(a.due_date_c) - new Date(b.due_date_c)
         case "title":
-          return a.title.localeCompare(b.title)
+          return a.title_c?.localeCompare(b.title_c || "") || 0
         case "created":
         default:
-          return new Date(b.createdAt) - new Date(a.createdAt)
+          return new Date(b.created_at_c) - new Date(a.created_at_c)
       }
     })
 
@@ -99,8 +101,8 @@ const TasksPage = () => {
   // Get page title based on current route
   const getPageTitle = () => {
     if (params.categoryId) {
-      const category = categories.find(c => c.Id === parseInt(params.categoryId))
-      return category ? category.name : "Category"
+const category = categories.find(c => c.Id === parseInt(params.categoryId))
+      return category ? category.Name : "Category"
     }
     
     const routeTitles = {
@@ -156,9 +158,9 @@ const TasksPage = () => {
   const handleCompleteTask = async (task) => {
     try {
       await updateTask({
-        ...task,
-        completed: !task.completed,
-        completedAt: !task.completed ? new Date().toISOString() : null
+...task,
+        completed_c: !task.completed_c,
+        completed_at_c: !task.completed_c ? new Date().toISOString() : null
       })
       toast.success(task.completed ? "Task marked as incomplete" : "Task completed! 🎉")
     } catch (error) {
@@ -177,7 +179,7 @@ const TasksPage = () => {
 
   const handleDeleteTask = async (task) => {
     try {
-      await deleteTask(task.Id)
+await deleteTask(task.Id)
       toast.success("Task deleted")
     } catch (error) {
       toast.error("Failed to delete task")
@@ -202,7 +204,7 @@ const TasksPage = () => {
             {getPageTitle()}
           </h1>
           <p className="text-gray-600">
-            {filteredTasks.length} of {tasks.length} tasks
+{filteredTasks.length} of {tasks.length} tasks
           </p>
         </div>
 
@@ -257,7 +259,7 @@ const TasksPage = () => {
 
       {/* Task List */}
       <TaskList
-        tasks={filteredTasks}
+tasks={filteredTasks}
         loading={loading}
         error={error}
         onRetry={loadTasks}

@@ -46,7 +46,7 @@ const TaskList = ({
       await onComplete(task)
       setCompletingTasks(prev => {
         const newSet = new Set(prev)
-        newSet.delete(task.Id)
+newSet.delete(task.Id)
         return newSet
       })
     }, 400)
@@ -105,8 +105,7 @@ const TaskList = ({
       <div className="space-y-3">
         {sortedTasks.map((task, index) => {
           const isCompleting = completingTasks.has(task.Id)
-          const isEditing = editingTask?.Id === task.Id
-
+const isEditing = editingTask?.Id === task.Id
           return (
             <div
               key={task.Id}
@@ -147,7 +146,7 @@ const TaskList = ({
             variant="ghost"
             size="sm"
             onClick={() => {
-              const incompleteTasks = tasks.filter(t => !t.completed)
+const incompleteTasks = tasks.filter(t => !t.completed_c)
               incompleteTasks.forEach(task => handleComplete(task))
             }}
             disabled={tasks.every(t => t.completed)}
@@ -160,7 +159,7 @@ const TaskList = ({
             variant="ghost"
             size="sm"
             onClick={() => {
-              if (window.confirm(`Are you sure you want to delete all ${tasks.length} tasks?`)) {
+if (window.confirm(`Are you sure you want to delete all ${tasks.length} tasks?`)) {
                 tasks.forEach(task => onDelete(task))
               }
             }}

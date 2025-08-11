@@ -17,7 +17,7 @@ const QuickAdd = ({
   const [title, setTitle] = useState("")
   const [priority, setPriority] = useState(PRIORITY_LEVELS.MEDIUM)
   const [dueToday, setDueToday] = useState(false)
-  const [categoryId, setCategoryId] = useState("")
+const [categoryId, setCategoryId] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e) => {
@@ -32,7 +32,7 @@ const QuickAdd = ({
         title: title.trim(),
         priority,
         dueDate: dueToday ? getTodayString() : null,
-        categoryId: categoryId || null
+category_id_c: categoryId || null
       })
       
       // Reset form
@@ -104,9 +104,9 @@ const QuickAdd = ({
               className="flex h-10 w-full rounded-lg border-2 border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:border-primary-300 hover:border-gray-300"
             >
               <option value="">No Category</option>
-              {categories.map(category => (
+{categories.map(category => (
                 <option key={category.Id} value={category.Id}>
-                  {category.name}
+                  {category.Name}
                 </option>
               ))}
             </select>

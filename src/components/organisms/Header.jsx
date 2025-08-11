@@ -1,7 +1,7 @@
-import React from "react"
-import Button from "@/components/atoms/Button"
-import ApperIcon from "@/components/ApperIcon"
-
+import React from "react";
+import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
+import LogoutButton from "@/components/atoms/LogoutButton";
 const Header = ({ onMenuClick, onQuickAdd }) => {
   return (
     <header className="lg:ml-80 bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-30">
@@ -39,20 +39,22 @@ const Header = ({ onMenuClick, onQuickAdd }) => {
                 })}
               </p>
             </div>
-            
-            <Button
-              onClick={onQuickAdd}
-              variant="accent"
-              size="lg"
-              className="shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              <ApperIcon name="Plus" className="h-5 w-5" />
-              Quick Add
-            </Button>
+<div className="flex items-center gap-3">
+              <Button
+                onClick={onQuickAdd}
+                variant="accent"
+                size="lg"
+                className="shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                <ApperIcon name="Plus" className="h-5 w-5" />
+                Quick Add
+              </Button>
+              <LogoutButton />
+            </div>
           </div>
 
           {/* Mobile quick add */}
-          <div className="lg:hidden">
+<div className="lg:hidden flex items-center gap-2">
             <Button
               onClick={onQuickAdd}
               variant="accent"
@@ -60,6 +62,7 @@ const Header = ({ onMenuClick, onQuickAdd }) => {
             >
               <ApperIcon name="Plus" className="h-4 w-4" />
             </Button>
+            <LogoutButton />
           </div>
         </div>
       </div>

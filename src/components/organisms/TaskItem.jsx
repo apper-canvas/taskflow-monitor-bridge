@@ -20,7 +20,7 @@ const TaskItem = ({
   const [showActions, setShowActions] = useState(false)
   const { categories } = useCategories()
   
-  const category = categories.find(c => c.Id === task.categoryId)
+const category = categories.find(c => c.Id === (task.category_id_c?.Id || task.category_id_c))
 
   const handleComplete = () => {
     // Show confetti animation
@@ -55,7 +55,7 @@ const TaskItem = ({
       className={cn(
         "group bg-white rounded-xl p-6 card-shadow hover:card-shadow-hover transition-all duration-200",
         "hover:scale-[1.01] hover:-translate-y-0.5",
-        task.completed && "opacity-75",
+task.completed_c && "opacity-75",
         isCompleting && "animate-scale-in",
         className
       )}
@@ -76,17 +76,17 @@ const TaskItem = ({
         <div className="flex-1 min-w-0">
           {/* Title */}
           <h3 className={cn(
-            "font-semibold text-gray-900 mb-2 leading-tight",
-            task.completed && "line-through text-gray-500"
+"font-semibold text-gray-900 mb-2 leading-tight",
+            task.completed_c && "line-through text-gray-500"
           )}>
             {task.title}
           </h3>
 
           {/* Description */}
-          {task.description && (
+{task.description_c && (
             <p className={cn(
               "text-gray-600 text-sm mb-3 line-clamp-2",
-              task.completed && "text-gray-400"
+              task.completed_c && "text-gray-400"
             )}>
               {task.description}
             </p>
@@ -94,17 +94,17 @@ const TaskItem = ({
 
           {/* Badges */}
           <div className="flex flex-wrap items-center gap-2">
-            <PriorityBadge 
-              priority={task.priority}
-              dueDate={task.dueDate}
-              completed={task.completed}
+<PriorityBadge 
+              priority={task.priority_c}
+              dueDate={task.due_date_c}
+              completed={task.completed_c}
               showDot
             />
             
-            {task.dueDate && (
+{task.due_date_c && (
               <DateBadge 
-                date={task.dueDate}
-                completed={task.completed}
+                date={task.due_date_c}
+                completed={task.completed_c}
               />
             )}
             
@@ -112,9 +112,9 @@ const TaskItem = ({
               <CategoryBadge category={category} />
             )}
 
-            {task.completed && task.completedAt && (
+{task.completed_c && task.completed_at_c && (
               <div className="text-xs text-gray-500 ml-auto">
-                Completed {formatDate(task.completedAt)}
+                Completed {formatDate(task.completed_at_c)}
               </div>
             )}
           </div>
