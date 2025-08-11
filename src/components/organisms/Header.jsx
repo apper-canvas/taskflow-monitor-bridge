@@ -1,7 +1,7 @@
 import React from "react";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import LogoutButton from "@/components/atoms/LogoutButton";
+import LogoutButton from "@/components/molecules/LogoutButton";
 const Header = ({ onMenuClick, onQuickAdd }) => {
   return (
     <header className="lg:ml-80 bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-30">
