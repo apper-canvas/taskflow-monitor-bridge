@@ -1,0 +1,112 @@
+[
+  {
+    "Id": 1,
+    "title": "Complete project proposal",
+    "description": "Finish the Q1 project proposal for the marketing campaign including budget analysis and timeline.",
+    "completed": false,
+    "priority": "high",
+    "dueDate": "2024-01-15",
+    "categoryId": 1,
+    "createdAt": "2024-01-10T09:00:00Z",
+    "completedAt": null
+  },
+  {
+    "Id": 2,
+    "title": "Review team performance",
+    "description": "Conduct quarterly review meetings with each team member and provide feedback.",
+    "completed": false,
+    "priority": "medium",
+    "dueDate": "2024-01-18",
+    "categoryId": 1,
+    "createdAt": "2024-01-09T14:30:00Z",
+    "completedAt": null
+  },
+  {
+    "Id": 3,
+    "title": "Grocery shopping",
+    "description": "Buy groceries for the week including fresh vegetables, fruits, and pantry essentials.",
+    "completed": true,
+    "priority": "low",
+    "dueDate": "2024-01-12",
+    "categoryId": 2,
+    "createdAt": "2024-01-11T08:15:00Z",
+    "completedAt": "2024-01-12T10:30:00Z"
+  },
+  {
+    "Id": 4,
+    "title": "Schedule dentist appointment",
+    "description": "Call dental office to schedule routine cleaning and checkup.",
+    "completed": false,
+    "priority": "medium",
+    "dueDate": "2024-01-20",
+    "categoryId": 3,
+    "createdAt": "2024-01-08T16:45:00Z",
+    "completedAt": null
+  },
+  {
+    "Id": 5,
+    "title": "Learn React hooks",
+    "description": "Complete online tutorial series on React hooks and practice with small projects.",
+    "completed": false,
+    "priority": "high",
+    "dueDate": "2024-01-25",
+    "categoryId": 4,
+    "createdAt": "2024-01-07T20:00:00Z",
+    "completedAt": null
+  },
+  {
+    "Id": 6,
+    "title": "Plan weekend trip",
+    "description": "Research destinations, book accommodations, and create itinerary for weekend getaway.",
+    "completed": false,
+    "priority": "low",
+    "dueDate": "2024-01-22",
+    "categoryId": 2,
+    "createdAt": "2024-01-06T11:20:00Z",
+    "completedAt": null
+  },
+  {
+    "Id": 7,
+    "title": "Update resume",
+    "description": "Add recent projects and skills to resume, proofread, and update LinkedIn profile.",
+    "completed": true,
+    "priority": "medium",
+    "dueDate": "2024-01-14",
+    "categoryId": 1,
+    "createdAt": "2024-01-05T13:10:00Z",
+    "completedAt": "2024-01-13T19:45:00Z"
+  },
+  {
+    "Id": 8,
+    "title": "Organize home office",
+    "description": "Declutter desk area, organize files, and set up better lighting for productivity.",
+    "completed": false,
+    "priority": "low",
+    "dueDate": null,
+    "categoryId": 2,
+    "createdAt": "2024-01-04T15:30:00Z",
+    "completedAt": null
+  },
+  {
+    "Id": 9,
+    "title": "Prepare tax documents",
+    "description": "Gather all necessary documents for tax filing including W-2s, receipts, and investment statements.",
+    "completed": false,
+    "priority": "high",
+    "dueDate": "2024-01-30",
+    "categoryId": 3,
+    "createdAt": "2024-01-03T10:00:00Z",
+    "completedAt": null
+  },
+  {
+    "Id": 10,
+    "title": "Read JavaScript book",
+    "description": "Continue reading 'You Don't Know JS' series, currently on Chapter 5 of the first book.",
+    "completed": false,
+    "priority": "medium",
+    "dueDate": "2024-02-05",
+    "categoryId": 4,
+    "createdAt": "2024-01-02T18:25:00Z",
+    "completedAt": null
+  }
+]

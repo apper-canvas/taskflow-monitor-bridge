@@ -1,0 +1,186 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'react-toastify/dist/ReactToastify.css';
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply font-body text-gray-900 bg-white antialiased;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #5B21B6, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glass {
+    @apply bg-white/90 backdrop-blur-sm;
+  }
+
+  .card-shadow {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .card-shadow-hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #D1D5DB #F9FAFB;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-50 rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full hover:bg-gray-400;
+  }
+}
+
+/* Toast Overrides */
+.Toastify__toast-container {
+  @apply text-sm;
+}
+
+.Toastify__toast {
+  @apply rounded-xl shadow-lg font-body;
+  padding: 12px 16px;
+  min-height: auto;
+}
+
+.Toastify__toast--success {
+  @apply bg-accent-50 text-accent-900 border border-accent-200;
+}
+
+.Toastify__toast--error {
+  @apply bg-red-50 text-red-900 border border-red-200;
+}
+
+.Toastify__toast--info {
+  @apply bg-blue-50 text-blue-900 border border-blue-200;
+}
+
+.Toastify__progress-bar {
+  @apply bg-current opacity-30;
+}
+
+.Toastify__close-button {
+  @apply text-current opacity-60 hover:opacity-80;
+}
+
+/* Priority Badge Animations */
+.priority-high.overdue {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Task Completion Animation */
+.task-completing {
+  animation: slideOutRight 0.4s ease-in forwards;
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(20px) scale(0.98);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(100px) scale(0.95);
+    opacity: 0;
+  }
+}
+
+/* Confetti particles */
+.confetti-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  animation: confetti 0.6s ease-out forwards;
+}
+
+.confetti-particle:nth-child(odd) {
+  @apply bg-accent-400;
+  border-radius: 50%;
+}
+
+.confetti-particle:nth-child(even) {
+  @apply bg-primary-400;
+  transform: rotate(45deg);
+}
+
+/* Drag and drop styles */
+.drag-over {
+  @apply ring-2 ring-primary-400 ring-opacity-50;
+}
+
+.dragging {
+  @apply opacity-50 rotate-2;
+}
+
+/* Custom checkbox styles */
+.custom-checkbox {
+  @apply relative appearance-none w-5 h-5 border-2 border-gray-300 rounded cursor-pointer transition-all duration-200;
+}
+
+.custom-checkbox:checked {
+  @apply bg-accent-500 border-accent-500;
+}
+
+.custom-checkbox:checked::after {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-full;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e");
+  background-size: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.custom-checkbox:focus {
+  @apply ring-2 ring-primary-500 ring-opacity-50 ring-offset-2;
+}
+
+/* Loading skeleton animations */
+.skeleton {
+  @apply bg-gray-200 rounded animate-pulse;
+}
+
+.skeleton-text {
+  @apply h-4 bg-gray-200 rounded animate-pulse;
+}
+
+/* Category color indicators */
+.category-red { @apply bg-red-500; }
+.category-orange { @apply bg-orange-500; }
+.category-yellow { @apply bg-yellow-500; }
+.category-green { @apply bg-green-500; }
+.category-blue { @apply bg-blue-500; }
+.category-indigo { @apply bg-indigo-500; }
+.category-purple { @apply bg-purple-500; }
+.category-pink { @apply bg-pink-500; }
