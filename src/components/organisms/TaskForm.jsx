@@ -72,11 +72,13 @@ title: task.title_c || "",
 
     setIsSubmitting(true)
 
-    try {
+try {
       const taskData = {
-        ...formData,
-due_date_c: formData.dueDate ? parseInputDate(formData.dueDate) : null,
-        category_id_c: formData.categoryId || null
+        title_c: formData.title,
+        description_c: formData.description,
+        priority_c: formData.priority,
+        due_date_c: formData.dueDate || null,
+        category_id_c: formData.categoryId ? parseInt(formData.categoryId) : null
       }
 
       await onSubmit(taskData)

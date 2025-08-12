@@ -28,11 +28,11 @@ const [categoryId, setCategoryId] = useState("")
     setIsSubmitting(true)
 
     try {
-      await onSubmit({
-        title: title.trim(),
-        priority,
-        dueDate: dueToday ? getTodayString() : null,
-category_id_c: categoryId || null
+await onSubmit({
+        title_c: title.trim(),
+        priority_c: priority,
+        due_date_c: dueToday ? getTodayString() : null,
+        category_id_c: categoryId ? parseInt(categoryId) : null
       })
       
       // Reset form

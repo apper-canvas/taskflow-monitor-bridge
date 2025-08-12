@@ -49,7 +49,8 @@ export const formatDateInput = (date) => {
 
 export const parseInputDate = (dateString) => {
   if (!dateString) return null
-  return startOfDay(parseISO(dateString))
+  // Return date string in YYYY-MM-DD format, not Date object
+  return format(parseISO(dateString), "yyyy-MM-dd")
 }
 
 export const getTodayString = () => {
