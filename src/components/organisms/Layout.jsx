@@ -31,9 +31,9 @@ const Layout = () => {
           <Header 
             onMenuClick={handleMenuClick}
             onQuickAdd={handleQuickAdd}
-          />
+/>
           
-          <main className="flex-1 lg:ml-80 overflow-y-auto">
+          <main className="flex-1 overflow-y-auto">
             <div className="p-6">
               <Outlet context={{ showQuickAdd, setShowQuickAdd }} />
             </div>
