@@ -18,11 +18,13 @@ const FilterBar = ({
   hasActiveFilters,
   className
 }) => {
-  const sortOptions = [
+const sortOptions = [
     { value: "created", label: "Date Created" },
     { value: "priority", label: "Priority" },
-    { value: "dueDate", label: "Due Date" },
-    { value: "title", label: "Title" }
+    { value: "due", label: "Due Date" },
+    { value: "alphabetical", label: "Alphabetical" },
+    { value: "today", label: "Due Today" },
+    { value: "overdue", label: "Overdue" }
   ]
 
   return (

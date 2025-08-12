@@ -315,6 +315,115 @@ class TaskService {
       }
       console.error("Error fetching tasks by priority:", error.message)
       throw error
+}
+  }
+
+  async getTodayTasks() {
+    try {
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "title_c" } },
+          { field: { Name: "description_c" } },
+          { field: { Name: "completed_c" } },
+          { field: { Name: "priority_c" } },
+          { field: { Name: "due_date_c" } },
+          { field: { Name: "created_at_c" } },
+          { field: { Name: "completed_at_c" } },
+          { field: { Name: "category_id_c" } }
+        ],
+        where: [
+          {
+            FieldName: "due_date_c",
+            Operator: "RelativeMatch",
+            Values: ["Today"]
+          }
+        ],
+        orderBy: [
+          { fieldName: "created_at_c", sorttype: "DESC" }
+        ]
+      }
+      
+      const response = await this.apperClient.fetchRecords(this.tableName, params)
+      
+      if (!response.success) {
+        console.error(response.message)
+        throw new Error(response.message)
+      }
+      
+      return response.data || []
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error fetching today's tasks:", error?.response?.data?.message)
+        throw new Error(error?.response?.data?.message)
+      }
+      console.error("Error fetching today's tasks:", error.message)
+      throw error
+    }
+  }
+
+  async getOverdueTasks() {
+    try {
+      const today = new Date().toISOString().split('T')[0]
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "title_c" } },
+          { field: { Name: "description_c" } },
+          { field: { Name: "completed_c" } },
+          { field: { Name: "priority_c" } },
+          { field: { Name: "due_date_c" } },
+          { field: { Name: "created_at_c" } },
+          { field: { Name: "completed_at_c" } },
+          { field: { Name: "category_id_c" } }
+        ],
+        whereGroups: [
+          {
+            operator: "AND",
+            subGroups: [
+              {
+                conditions: [
+                  {
+                    fieldName: "due_date_c",
+                    operator: "LessThan",
+                    values: [today]
+                  }
+                ],
+                operator: "AND"
+              },
+              {
+                conditions: [
+                  {
+                    fieldName: "completed_c",
+                    operator: "EqualTo",
+                    values: [false]
+                  }
+                ],
+                operator: "AND"
+              }
+            ]
+          }
+        ],
+        orderBy: [
+          { fieldName: "due_date_c", sorttype: "ASC" }
+        ]
+      }
+      
+      const response = await this.apperClient.fetchRecords(this.tableName, params)
+      
+      if (!response.success) {
+        console.error(response.message)
+        throw new Error(response.message)
+      }
+      
+      return response.data || []
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error fetching overdue tasks:", error?.response?.data?.message)
+        throw new Error(error?.response?.data?.message)
+      }
+      console.error("Error fetching overdue tasks:", error.message)
+      throw error
     }
   }
 }
