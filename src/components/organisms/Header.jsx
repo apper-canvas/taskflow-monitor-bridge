@@ -4,7 +4,7 @@ import Button from "@/components/atoms/Button";
 import LogoutButton from "@/components/molecules/LogoutButton";
 const Header = ({ onMenuClick, onQuickAdd }) => {
   return (
-    <header className="lg:ml-80 bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-30">
+    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-30">
       <div className="px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Mobile menu button and title */}
