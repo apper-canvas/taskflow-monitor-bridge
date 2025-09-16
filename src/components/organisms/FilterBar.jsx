@@ -77,7 +77,7 @@ const sortOptions = [
             Sort by:
           </label>
           <select
-            value={sortBy}
+value={sortBy}
             onChange={(e) => onSortChange(e.target.value)}
             className="text-sm border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-300"
           >
@@ -87,7 +87,7 @@ const sortOptions = [
               </option>
             ))}
           </select>
-<select
+        <select
           value={selectedUrgency}
           onChange={(e) => onUrgencyChange(e.target.value)}
           className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"

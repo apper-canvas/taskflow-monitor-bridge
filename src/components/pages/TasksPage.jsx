@@ -18,12 +18,12 @@ const TasksPage = () => {
   const { tasks, loading, error, loadTasks, createTask, updateTask, deleteTask } = useTasks()
   const { categories } = useCategories()
   
-  const [showTaskForm, setShowTaskForm] = useState(false)
+const [showTaskForm, setShowTaskForm] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedPriority, setSelectedPriority] = useState(null)
+  const [selectedUrgency, setSelectedUrgency] = useState("")
   const [showCompleted, setShowCompleted] = useState(true)
   const [sortBy, setSortBy] = useState("created")
-
   // Load tasks on mount and when params change
   useEffect(() => {
     loadTasks()
@@ -69,7 +69,6 @@ if (selectedPriority) {
       filtered = filtered.filter(task => task.priority_c === selectedPriority)
     }
 
-const [selectedUrgency, setSelectedUrgency] = useState("")
   // Completed filtering
     if (!showCompleted) {
       filtered = filtered.filter(task => !task.completed)
@@ -191,9 +190,10 @@ await deleteTask(task.Id)
     }
   }
 
-  const handleClearFilters = () => {
+const handleClearFilters = () => {
     setSearchQuery("")
     setSelectedPriority(null)
+    setSelectedUrgency("")
     setShowCompleted(true)
     setSortBy("created")
   }
@@ -249,11 +249,13 @@ return (
       )}
 
       {/* Filter Bar */}
-      <FilterBar
+<FilterBar
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         selectedPriority={selectedPriority}
         onPriorityChange={setSelectedPriority}
+        selectedUrgency={selectedUrgency}
+        onUrgencyChange={setSelectedUrgency}
         showCompleted={showCompleted}
         onShowCompletedChange={setShowCompleted}
         sortBy={sortBy}
