@@ -103,9 +103,13 @@ newSet.delete(task.Id)
 
       {/* Task Items */}
       <div className="space-y-3">
-        {sortedTasks.map((task, index) => {
+{sortedTasks.map((task, index) => {
           const isCompleting = completingTasks.has(task.Id)
-const isEditing = editingTask?.Id === task.Id
+          const isEditing = editingTask?.Id === task.Id
+          
+          // Import UrgencyBadge for use in TaskItem
+          const UrgencyBadge = React.lazy(() => import('@/components/molecules/UrgencyBadge'))
+          
           return (
             <div
               key={task.Id}

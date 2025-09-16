@@ -19,7 +19,8 @@ const TaskForm = ({
     title: "",
     description: "",
     priority: PRIORITY_LEVELS.MEDIUM,
-    dueDate: "",
+dueDate: "",
+    urgency: "normal",
     categoryId: ""
   })
   const [errors, setErrors] = useState({})
@@ -32,7 +33,8 @@ const TaskForm = ({
 title: task.title_c || "",
         description: task.description_c || "",
         priority: task.priority_c || PRIORITY_LEVELS.MEDIUM,
-        dueDate: task.due_date_c ? formatDateInput(task.due_date_c) : "",
+dueDate: task.due_date_c ? formatDateInput(task.due_date_c) : "",
+        urgency: task.urgency_c || "normal",
         categoryId: task.category_id_c?.Id || task.category_id_c || ""
       })
     }
@@ -76,7 +78,8 @@ try {
       const taskData = {
         title_c: formData.title,
         description_c: formData.description,
-        priority_c: formData.priority,
+priority_c: formData.priority,
+        urgency_c: formData.urgency,
         due_date_c: formData.dueDate || null,
         category_id_c: formData.categoryId ? parseInt(formData.categoryId) : null
       }
@@ -90,7 +93,8 @@ try {
           description: "",
           priority: PRIORITY_LEVELS.MEDIUM,
           dueDate: "",
-          categoryId: ""
+categoryId: "",
+          urgency: "normal"
         })
       }
     } catch (error) {
@@ -158,6 +162,17 @@ try {
             disabled={isSubmitting}
             className="flex h-10 w-full rounded-lg border-2 border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:border-primary-300 hover:border-gray-300 disabled:cursor-not-allowed disabled:opacity-50"
           />
+        </FormField>
+<FormField label="Urgency">
+          <select
+            value={formData.urgency}
+            onChange={(e) => handleChange("urgency", e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+          >
+            <option value="urgent">Urgent</option>
+            <option value="normal">Normal</option>
+            <option value="low">Low</option>
+          </select>
         </FormField>
       </div>
 

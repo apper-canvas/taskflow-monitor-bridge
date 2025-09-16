@@ -10,6 +10,8 @@ const FilterBar = ({
   onSearchChange,
   selectedPriority,
   onPriorityChange,
+selectedUrgency,
+  onUrgencyChange,
   showCompleted,
   onShowCompletedChange,
   sortBy,
@@ -22,9 +24,17 @@ const sortOptions = [
     { value: "created", label: "Date Created" },
     { value: "priority", label: "Priority" },
     { value: "due", label: "Due Date" },
-    { value: "alphabetical", label: "Alphabetical" },
+{ value: "alphabetical", label: "Alphabetical" },
     { value: "today", label: "Due Today" },
-    { value: "overdue", label: "Overdue" }
+    { value: "overdue", label: "Overdue" },
+    { value: "urgency", label: "Urgency" }
+  ]
+
+  const urgencyOptions = [
+    { value: "", label: "All Urgency" },
+    { value: "urgent", label: "Urgent" },
+    { value: "normal", label: "Normal" },
+    { value: "low", label: "Low" }
   ]
 
   return (
@@ -77,6 +87,17 @@ const sortOptions = [
               </option>
             ))}
           </select>
+<select
+          value={selectedUrgency}
+          onChange={(e) => onUrgencyChange(e.target.value)}
+          className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+        >
+          {urgencyOptions.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
         </div>
 
         {/* Show Completed Toggle */}

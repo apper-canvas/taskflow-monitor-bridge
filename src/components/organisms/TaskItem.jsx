@@ -1,19 +1,20 @@
-import React, { useState } from "react"
-import Button from "@/components/atoms/Button"
-import Checkbox from "@/components/atoms/Checkbox"
-import PriorityBadge from "@/components/molecules/PriorityBadge"
-import DateBadge from "@/components/molecules/DateBadge"
-import CategoryBadge from "@/components/molecules/CategoryBadge"
-import ApperIcon from "@/components/ApperIcon"
-import { formatDate } from "@/utils/date"
-import { useCategories } from "@/hooks/useCategories"
-import { cn } from "@/utils/cn"
+import React, { useState } from "react";
+import { useCategories } from "@/hooks/useCategories";
+import { formatDate } from "@/utils/date";
+import { cn } from "@/utils/cn";
+import ApperIcon from "@/components/ApperIcon";
+import PriorityBadge from "@/components/molecules/PriorityBadge";
+import CategoryBadge from "@/components/molecules/CategoryBadge";
+import DateBadge from "@/components/molecules/DateBadge";
+import Button from "@/components/atoms/Button";
+import Checkbox from "@/components/atoms/Checkbox";
 
 const TaskItem = ({ 
   task, 
   onComplete, 
   onEdit, 
   onDelete,
+  UrgencyBadge,
   isCompleting = false,
   className 
 }) => {
@@ -97,6 +98,11 @@ task.completed_c && "opacity-75",
 <PriorityBadge 
               priority={task.priority_c}
               dueDate={task.due_date_c}
+              completed={task.completed_c}
+              showDot
+            />
+            <UrgencyBadge 
+              urgency={task.urgency_c}
               completed={task.completed_c}
               showDot
             />

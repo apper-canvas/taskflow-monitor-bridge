@@ -6,15 +6,14 @@ import { cn } from "@/utils/cn"
 
 const PriorityBadge = ({ 
   priority, 
-  dueDate, 
+dueDate,
   completed,
   className,
   showDot = false 
 }) => {
   const config = getPriorityConfig(priority)
   const overdue = !completed && isOverdue(dueDate)
-  
-  return (
+return (
     <Badge
       className={cn(
         config.bg,

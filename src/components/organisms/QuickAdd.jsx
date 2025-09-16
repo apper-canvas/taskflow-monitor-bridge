@@ -16,7 +16,8 @@ const QuickAdd = ({
   const { categories } = useCategories()
   const [title, setTitle] = useState("")
   const [priority, setPriority] = useState(PRIORITY_LEVELS.MEDIUM)
-  const [dueToday, setDueToday] = useState(false)
+const [dueToday, setDueToday] = useState(false)
+  const [urgency, setUrgency] = useState("normal")
 const [categoryId, setCategoryId] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -32,14 +33,16 @@ await onSubmit({
         title_c: title.trim(),
         priority_c: priority,
         due_date_c: dueToday ? getTodayString() : null,
-        category_id_c: categoryId ? parseInt(categoryId) : null
+category_id_c: categoryId ? parseInt(categoryId) : null,
+        urgency_c: urgency
       })
       
       // Reset form
       setTitle("")
       setPriority(PRIORITY_LEVELS.MEDIUM)
       setDueToday(false)
-      setCategoryId("")
+setCategoryId("")
+      setUrgency("normal")
       onCancel?.()
     } catch (error) {
       console.error("Error creating task:", error)
@@ -111,7 +114,15 @@ await onSubmit({
               ))}
             </select>
           </div>
-
+<select
+            value={urgency}
+            onChange={(e) => setUrgency(e.target.value)}
+            className="px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-primary-500"
+          >
+            <option value="urgent">Urgent</option>
+            <option value="normal">Normal</option>
+            <option value="low">Low</option>
+          </select>
           {/* Due Today Toggle */}
           <label className="flex items-center gap-3 cursor-pointer p-3 rounded-lg hover:bg-gray-50 transition-colors">
             <input

@@ -44,8 +44,55 @@ export const getPriorityWeight = (priority) => {
   }
 }
 
+// Urgency utilities
+export const URGENCY_LABELS = {
+  urgent: "Urgent",
+  normal: "Normal", 
+  low: "Low"
+}
+
+export const URGENCY_LEVELS = ["urgent", "normal", "low"]
+
+export const URGENCY_COLORS = {
+  urgent: {
+    bg: "bg-red-100 hover:bg-red-150",
+    text: "text-red-800",
+    border: "border-red-200",
+    dot: "bg-red-500"
+  },
+  normal: {
+    bg: "bg-blue-100 hover:bg-blue-150", 
+    text: "text-blue-800",
+    border: "border-blue-200",
+    dot: "bg-blue-500"
+  },
+  low: {
+    bg: "bg-gray-100 hover:bg-gray-150",
+    text: "text-gray-800", 
+    border: "border-gray-200",
+    dot: "bg-gray-500"
+  }
+}
+
+export const getUrgencyConfig = (urgency) => {
+  return URGENCY_COLORS[urgency] || URGENCY_COLORS.normal
+}
+
+export const getUrgencyWeight = (urgency) => {
+  const weights = { urgent: 3, normal: 2, low: 1 }
+  return weights[urgency] || weights.normal
+}
+
+export const sortByUrgency = (tasks) => {
+  return [...tasks].sort((a, b) => {
+    return getUrgencyWeight(b.urgency) - getUrgencyWeight(a.urgency)
+  })
+}
+
 export const sortByPriority = (tasks) => {
   return [...tasks].sort((a, b) => {
-    return getPriorityWeight(b.priority) - getPriorityWeight(a.priority)
+    const priorityDiff = getPriorityWeight(b.priority) - getPriorityWeight(a.priority)
+    if (priorityDiff !== 0) return priorityDiff
+    return getUrgencyWeight(b.urgency) - getUrgencyWeight(a.urgency)
   })
 }
